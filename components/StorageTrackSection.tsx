@@ -2,101 +2,76 @@
 
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { FiTarget, FiTrendingUp, FiCheckCircle } from "react-icons/fi";
-import { MapPin, ArrowRight } from "lucide-react";
-
-interface FeatureCardProps {
-  title: string;
-  description: string;
-  icon: React.ReactNode;
-}
-
-function FeatureCard({ title, description, icon }: FeatureCardProps) {
-  return (
-    <Card className="p-4">
-      <div className="flex items-start space-x-3">
-        <div className="p-1.5 bg-primary/10 rounded-lg text-primary">
-          {icon}
-        </div>
-        <div className="space-y-1">
-          <h3 className="font-medium text-base">{title}</h3>
-          <p className="text-sm text-muted-foreground">{description}</p>
-        </div>
-      </div>
-    </Card>
-  );
-}
+import { MapPin, Video, ArrowRight } from "lucide-react";
 
 export function StorageTrackSection() {
-  const features = [
-    {
-      title: "Live Location & History Tracking",
-      description:
-        "View where your items are stored, how long they've been there, and their movement history — all visualized on an interactive map.",
-      icon: <FiTarget size={20} />,
-    },
-    {
-      title: "Smart Transfer & Routing",
-      description:
-        "Our logistics algorithm adapts to traffic, demand, and depot load to ensure the most efficient storage distribution.",
-      icon: <FiTrendingUp size={20} />,
-    },
-    {
-      title: "Camera Access & Live Monitoring",
-      description:
-        "Access live camera feeds from your selected depot and get real-time visibility of your stored items.",
-      icon: <FiCheckCircle size={20} />,
-    },
-  ];
-
   return (
-    <section className="py-8 px-4">
-      <div className="container mx-auto max-w-5xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          {/* Left Column - Content */}
-          <div className="space-y-6">
-            <div className="space-y-2">
-              <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
-                Storage Tracking System
-              </h2>
-              <p className="text-base text-muted-foreground">
-                We've built a centralized physical cloud network with verified
-                SME warehouses across Turkey. Track and manage every step of
-                your storage operations through one powerful dashboard.
-              </p>
-            </div>
-
+    <section className="py-4 px-2">
+      <div className="container mx-auto max-w-md">
+        <div className="space-y-4">
+          {/* Map Card */}
+          <Card className="p-4">
             <div className="space-y-3">
-              {features.map((feature, index) => (
-                <FeatureCard key={index} {...feature} />
-              ))}
+              <div className="flex items-center space-x-2">
+                <MapPin className="h-5 w-5 text-primary" />
+                <h3 className="font-medium">Storage Location</h3>
+              </div>
+              <div className="relative aspect-video rounded-lg overflow-hidden bg-gray-100">
+                <img
+                  src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/29.0330,41.0082,13,0/600x400?access_token=pk.eyJ1IjoiZXhhbXBsZXVzZXIiLCJhIjoiY2xnMXRqZ2F5MDF1NzNkcGF1bXg1cXN0YSJ9.2eQN50P6GqHEUQmXhNqZ0g"
+                  alt="Storage Location Map"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                <div className="absolute bottom-3 left-3 text-white text-sm">
+                  <p className="font-medium">Istanbul, Turkey</p>
+                  <p className="text-xs opacity-80">Last updated: 2 mins ago</p>
+                </div>
+              </div>
+              <Button size="sm" className="w-full group">
+                View Full Map
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Button>
             </div>
+          </Card>
 
-            <Button size="sm" className="group">
-              Try Dashboard
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Button>
-          </div>
-
-          {/* Right Column - Map Preview */}
-          <div className="relative">
-            <Card className="aspect-square overflow-hidden rounded-lg">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/5" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center space-y-3">
-                  <div className="inline-flex items-center justify-center p-3 bg-primary/10 rounded-full">
-                    <MapPin className="h-6 w-6 text-primary" />
-                  </div>
-                  <div className="space-y-1">
-                    <h3 className="text-lg font-medium">Interactive Map</h3>
-                    <p className="text-xs text-muted-foreground">
-                      Real-time tracking visualization
+          {/* Camera Preview Card */}
+          <Card className="p-4">
+            <div className="space-y-3">
+              <div className="flex items-center space-x-2">
+                <Video className="h-5 w-5 text-primary" />
+                <h3 className="font-medium">Live Camera Feed</h3>
+              </div>
+              <div className="relative aspect-video rounded-lg overflow-hidden bg-gray-900">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center space-y-2">
+                    <div className="inline-flex items-center justify-center p-3 bg-primary/10 rounded-full">
+                      <Video className="h-6 w-6 text-primary" />
+                    </div>
+                    <p className="text-sm text-gray-400">
+                      Camera Feed Loading...
                     </p>
                   </div>
                 </div>
+                <div className="absolute top-3 right-3">
+                  <span className="px-2 py-1 text-xs bg-red-500 text-white rounded-full">
+                    LIVE
+                  </span>
+                </div>
               </div>
-            </Card>
-          </div>
+              <div className="flex space-x-2">
+                <Button size="sm" variant="outline" className="flex-1">
+                  Camera 1
+                </Button>
+                <Button size="sm" variant="outline" className="flex-1">
+                  Camera 2
+                </Button>
+                <Button size="sm" variant="outline" className="flex-1">
+                  Camera 3
+                </Button>
+              </div>
+            </div>
+          </Card>
         </div>
       </div>
     </section>
