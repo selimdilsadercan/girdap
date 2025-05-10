@@ -18,7 +18,7 @@ export function StorageTrackSection() {
               </div>
               <div className="relative aspect-video rounded-lg overflow-hidden bg-gray-100">
                 <img
-                  src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/29.0330,41.0082,13,0/600x400?access_token=pk.eyJ1IjoiZXhhbXBsZXVzZXIiLCJhIjoiY2xnMXRqZ2F5MDF1NzNkcGF1bXg1cXN0YSJ9.2eQN50P6GqHEUQmXhNqZ0g"
+                  src="/map.png"
                   alt="Storage Location Map"
                   className="w-full h-full object-cover"
                 />
